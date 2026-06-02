@@ -16,7 +16,8 @@
       "Bash(git -C \"C:/Users/conor/OneDrive/Desktop/peptidemaps\" log --oneline)",
       "Bash(git -C \"C:/Users/conor/OneDrive/Desktop/peptidemaps\" status)",
       "Bash(gh --version)",
-      "Bash(git -C \"C:/Users/conor/OneDrive/Desktop/peptidemaps\" push -u origin main)"
+      "Bash(git -C \"C:/Users/conor/OneDrive/Desktop/peptidemaps\" push -u origin main)",
+      "Bash(git -C \"C:/Users/conor/OneDrive/Desktop/peptidemaps\" push)"
     ]
   }
 }

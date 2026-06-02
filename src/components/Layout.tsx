@@ -38,7 +38,7 @@ export default function Layout() {
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5 py-4">
           <Logo />
           <nav className="hidden items-center gap-7 md:flex">
-            <NavLink to="/" end className={navLinkClass}>
+            <NavLink to="/for-patients" className={navLinkClass}>
               Patients
             </NavLink>
             <NavLink to="/conditions" className={navLinkClass}>

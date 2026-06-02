@@ -4,31 +4,88 @@ import { Link } from "react-router-dom";
 // Default to /peptide-therapy/denver-colorado until a city picker exists.
 const FIND_CLINICS_HREF = "/peptide-therapy/denver-colorado";
 
+const GOALS = [
+  {
+    title: "Weight & metabolic",
+    peptides: ["Semaglutide", "Tirzepatide"],
+    href: "/conditions/weight-loss",
+  },
+  {
+    title: "Recovery & repair",
+    peptides: ["BPC-157"],
+    href: "/conditions/recovery",
+  },
+  {
+    title: "Anti-aging & longevity",
+    peptides: ["Sermorelin", "NAD+"],
+    href: "/conditions/anti-aging",
+  },
+  {
+    title: "Sexual wellness",
+    peptides: ["Physician protocols"],
+    href: "/conditions/sexual-health",
+  },
+];
+
+const PREP_ITEMS = [
+  "Write down your primary goal and any symptoms or concerns",
+  "Gather your relevant health history, current medications, and supplements",
+  "Bring any recent lab work you already have",
+  "Prepare questions about the provider's experience and monitoring approach",
+];
+
 export default function ForPatients() {
   return (
     <div>
       {/* Hero */}
       <section className="relative">
-        <div className="mx-auto max-w-4xl px-5 pb-14 pt-14 md:pt-20">
-          <span className="pill">For patients</span>
-          <h1 className="mt-5 font-display text-4xl leading-[1.05] tracking-tight text-ink md:text-6xl">
-            Find a verified peptide therapy clinic near you.
-          </h1>
-          <p className="mt-5 text-lg leading-relaxed text-ink-soft">
-            You've researched peptide therapy and you're ready to take the
-            next step. This page is the practical guide to actually getting
-            started: how to tell if peptide therapy is right for you, how to
-            prepare for your first appointment, and how to find a verified
-            clinic you can trust. PeptideMaps connects you with vetted local
-            providers so you can book a consultation with confidence.
-          </p>
-          <Link to={FIND_CLINICS_HREF} className="btn-primary mt-8">
-            Find clinics near you
-          </Link>
+        <div className="mx-auto max-w-6xl px-5 pb-14 pt-14 md:pt-20">
+          <div className="grid items-start gap-12 md:grid-cols-[1.05fr_0.95fr]">
+            <div>
+              <span className="pill">For patients</span>
+              <h1 className="mt-5 font-display text-5xl leading-[1.02] tracking-tight text-ink md:text-7xl">
+                Find a{" "}
+                <span className="relative whitespace-nowrap">
+                  verified
+                  <span className="absolute inset-x-0 -bottom-1 -z-10 h-[6px] rounded bg-accent-200" />
+                </span>{" "}
+                peptide clinic near you.
+              </h1>
+              <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-soft">
+                You've researched peptide therapy and you're ready to take the
+                next step. This is the practical guide to actually getting
+                started: how to tell if it's right for you, how to prepare
+                for your first appointment, and how to find a clinic you can
+                trust.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <Link to={FIND_CLINICS_HREF} className="btn-primary">
+                  Find clinics near you
+                </Link>
+                <Link
+                  to="/conditions"
+                  className="text-sm font-semibold text-accent-600 hover:text-accent-700"
+                >
+                  Browse by condition &rarr;
+                </Link>
+              </div>
+            </div>
+
+            <PatientHeroCard />
+          </div>
         </div>
       </section>
 
-      <article className="mx-auto max-w-3xl px-5 pb-20">
+      {/* Trust band */}
+      <section className="border-y border-ink/10 bg-slate-50">
+        <div className="mx-auto grid max-w-6xl gap-4 px-5 py-5 text-sm font-medium text-ink-soft md:grid-cols-3">
+          <TrustBadge label="Free for patients" />
+          <TrustBadge label="Every clinic verified" />
+          <TrustBadge label="Book directly with the clinic" />
+        </div>
+      </section>
+
+      <article className="mx-auto max-w-3xl px-5 pb-20 pt-16">
         <Section title="Is peptide therapy right for you?">
           <p>
             Peptide therapy isn't for everyone, and a good provider will tell
@@ -57,21 +114,33 @@ export default function ForPatients() {
         <Section title="Peptide therapy by goal">
           <p>
             Most patients come to peptide therapy with one of a few goals in
-            mind. Weight and metabolic goals are the most common, usually
-            involving GLP-1 peptides like semaglutide and tirzepatide.
-            Recovery and repair goals often point toward peptides like
-            BPC-157. Healthy-aging and longevity goals may involve sermorelin
-            or NAD+ protocols. Sexual health is another area patients ask
-            about.
+            mind. Your goal shapes the conversation with your provider, but
+            it doesn't determine your protocol on its own.
           </p>
-          <p>
-            Your goal shapes the conversation with your provider, but it
-            doesn't determine your protocol on its own. The right peptide,
-            if any, depends on your full clinical picture and your provider's
-            judgment. Knowing your goal just helps you find a clinic that
-            focuses on it.
-          </p>
-          {/* TODO once national peptide pages exist, link semaglutide / tirzepatide / BPC-157 / sermorelin to /peptide-therapy/<slug>. Left as plain text per content brief. */}
+
+          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            {GOALS.map((g) => (
+              <Link
+                key={g.title}
+                to={g.href}
+                className="card group p-5 transition hover:-translate-y-0.5 hover:border-accent-300"
+              >
+                <p className="font-display text-lg font-semibold text-ink group-hover:text-accent-700">
+                  {g.title}
+                </p>
+                <div className="mt-2 flex flex-wrap gap-1.5">
+                  {g.peptides.map((p) => (
+                    <span key={p} className="pill">
+                      {p}
+                    </span>
+                  ))}
+                </div>
+                <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-accent-600">
+                  Read the guide &rarr;
+                </p>
+              </Link>
+            ))}
+          </div>
         </Section>
 
         <Section title="How patients use PeptideMaps">
@@ -80,13 +149,7 @@ export default function ForPatients() {
             in your city, compare verified clinics by credentials, services,
             and real patient reviews, and book a consultation directly
             through a calendar synced with the clinic's. No sorting through
-            ads, no guessing which providers are legitimate. We've already
-            done the vetting.
-          </p>
-          <p>
-            The goal is simple: get you from "I'm considering peptide
-            therapy" to a booked consultation with a clinic you can trust,
-            without the usual friction.
+            ads, no guessing which providers are legitimate.
           </p>
         </Section>
 
@@ -101,7 +164,7 @@ export default function ForPatients() {
           <p>
             Because the structures differ so much, comparing clinics directly
             is the best way to understand what you're paying for. For a
-            fuller breakdown of how peptide therapy cost works, see our{" "}
+            fuller breakdown, see our{" "}
             <Link
               to="/peptide-therapy"
               className="font-medium text-accent-600 underline-offset-4 hover:underline"
@@ -112,37 +175,31 @@ export default function ForPatients() {
           </p>
         </Section>
 
-        <Section title="How to prepare for your first peptide therapy appointment">
+        <Section title="How to prepare for your first appointment">
           <p>
             A little preparation makes your first consultation far more
-            productive. Before you go, it helps to write down your primary
-            goal and any symptoms or concerns, gather your relevant health
-            history including current medications and supplements, and bring
-            any recent lab work you already have. Come with questions about
-            the provider's experience, monitoring approach, and what success
-            looks like for your goal.
+            productive. Before you go:
           </p>
+          <ol className="mt-5 space-y-3">
+            {PREP_ITEMS.map((item, i) => (
+              <li
+                key={item}
+                className="flex items-start gap-4 rounded-xl border border-ink/10 bg-white p-4"
+              >
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-accent-500 font-display text-sm font-semibold text-white">
+                  {i + 1}
+                </span>
+                <span className="text-sm leading-relaxed text-ink">{item}</span>
+              </li>
+            ))}
+          </ol>
           <p>
             A good first appointment is a two-way evaluation. Your provider
             is assessing whether peptide therapy is appropriate for you, and
-            you're assessing whether this is a clinic you trust. Expect a
-            review of your history, a discussion of your goals, and likely
-            an order for baseline lab work before any protocol is
-            recommended. Be cautious of any provider ready to sell you
-            peptides without that evaluation.
+            you're assessing whether this is a clinic you trust. Be cautious
+            of any provider ready to sell you peptides without that
+            evaluation.
           </p>
-        </Section>
-
-        <Section title="Find verified clinics near you">
-          <p>
-            When you're ready, finding a clinic is the easy part. PeptideMaps
-            lists verified peptide therapy providers city by city, so you
-            can compare local options and book directly. Search your city to
-            see verified clinics near you.
-          </p>
-          <Link to={FIND_CLINICS_HREF} className="btn-primary mt-3">
-            Find clinics near you
-          </Link>
         </Section>
 
         <Section title="Questions patients ask before their first appointment">
@@ -159,47 +216,124 @@ export default function ForPatients() {
                 Peptides are prescription treatments
               </a>
               , and any source offering them without a prescription or
-              medical oversight should be treated with caution. This is one
-              of the clearest signals of a legitimate clinic versus a
-              questionable one.
+              medical oversight should be treated with caution.
             </p>
           </Faq>
           <Faq q="How do I know if a clinic on PeptideMaps is legitimate?">
             <p>
               Every clinic on PeptideMaps is reviewed before it's listed,
               covering active medical licensing, compliant prescribing
-              practices, and patient-safety standards. The verification
-              badge means a provider has met that baseline. Beyond that, you
-              can compare credentials and real patient reviews on each
-              clinic's profile before you book.
+              practices, and patient-safety standards. The verification badge
+              means a provider has met that baseline.
             </p>
           </Faq>
           <Faq q="What's the difference between a peptide clinic and a telehealth provider?">
             <p>
               An in-person peptide clinic offers face-to-face evaluation,
-              on-site labs in many cases, and direct physical oversight,
-              which some patients prefer for a medical therapy. A telehealth
-              provider offers convenience and remote access, often at lower
-              friction. Neither is automatically better. What matters is that
-              whichever you choose operates legitimately, with proper
-              evaluation, prescribing, and monitoring. PeptideMaps focuses on
-              verified local clinics so you can find trusted in-person care
-              near you.
+              on-site labs in many cases, and direct physical oversight. A
+              telehealth provider offers convenience and remote access. What
+              matters is that whichever you choose operates legitimately,
+              with proper evaluation, prescribing, and monitoring.
             </p>
           </Faq>
         </Section>
 
-        <div className="mt-12 flex justify-center">
-          <Link to={FIND_CLINICS_HREF} className="btn-primary">
+        {/* Final CTA */}
+        <section className="mt-16 overflow-hidden rounded-3xl bg-gradient-to-br from-brand-700 via-brand-800 to-brand-900 p-10 text-white">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-500/15 px-3 py-1 text-xs font-medium uppercase tracking-widest text-accent-300">
+            Ready when you are
+          </span>
+          <h2 className="mt-4 font-display text-3xl tracking-tight text-white md:text-4xl">
+            Find verified clinics near you.
+          </h2>
+          <p className="mt-3 max-w-2xl text-brand-100">
+            Search your city to see verified peptide therapy providers.
+            Compare credentials and reviews, then book directly.
+          </p>
+          <Link
+            to={FIND_CLINICS_HREF}
+            className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-accent-500 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-accent-400"
+          >
             Find clinics near you
           </Link>
-        </div>
+        </section>
 
         <p className="mt-10 text-center text-xs text-ink-muted">
           PeptideMaps is a directory service. We do not provide medical
           advice or treatment. Always consult a licensed provider.
         </p>
       </article>
+    </div>
+  );
+}
+
+function PatientHeroCard() {
+  return (
+    <div className="card overflow-hidden p-0">
+      <div className="bg-brand-700 px-6 py-3 text-[11px] font-semibold uppercase tracking-widest text-accent-300">
+        Find a clinic
+      </div>
+      <div className="p-6">
+        <p className="text-xs font-semibold uppercase tracking-wide text-ink-muted">
+          Your city
+        </p>
+        <div className="mt-2 flex items-center justify-between rounded-xl border border-ink/10 bg-white px-4 py-3 text-sm">
+          <span className="text-ink">Denver, Colorado</span>
+          <span className="text-xs text-ink-muted">12 clinics</span>
+        </div>
+
+        <p className="mt-5 text-xs font-semibold uppercase tracking-wide text-ink-muted">
+          Your goal
+        </p>
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {["Weight loss", "Recovery", "Anti-aging", "Sexual wellness"].map(
+            (g, i) => (
+              <span
+                key={g}
+                className={`rounded-full px-3 py-1.5 text-xs font-medium ${
+                  i === 0
+                    ? "bg-accent-500 text-white"
+                    : "bg-slate-50 text-ink-soft"
+                }`}
+              >
+                {g}
+              </span>
+            ),
+          )}
+        </div>
+
+        <div className="mt-6 border-t border-ink/10 pt-4">
+          <p className="text-xs font-semibold uppercase tracking-widest text-accent-600">
+            Top result
+          </p>
+          <div className="mt-3 flex items-start gap-3">
+            <div className="grid h-11 w-11 place-items-center rounded-xl bg-accent-50 font-display text-sm font-semibold text-accent-700">
+              FR
+            </div>
+            <div>
+              <p className="font-display text-sm font-semibold text-ink">
+                Front Range Peptide Co.
+              </p>
+              <p className="text-xs text-ink-muted">Denver, CO</p>
+              <p className="mt-0.5 text-xs">
+                <span className="text-accent-500">★ 4.8</span>{" "}
+                <span className="text-ink-muted">· 24 reviews</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function TrustBadge({ label }: { label: string }) {
+  return (
+    <div className="flex items-center gap-2">
+      <span className="grid h-7 w-7 place-items-center rounded-full bg-accent-500/10 text-sm text-accent-600">
+        ✓
+      </span>
+      <span>{label}</span>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SCHEDULE_HREF = "#schedule";
 
@@ -7,26 +7,65 @@ export default function ForClinics() {
     <div>
       {/* Hero */}
       <section className="relative">
-        <div className="mx-auto max-w-4xl px-5 pb-16 pt-14 md:pt-20">
-          <span className="pill">For peptide clinics</span>
-          <h1 className="mt-5 font-display text-4xl leading-[1.05] tracking-tight text-ink md:text-6xl">
-            Get more verified peptide patients.
-          </h1>
-          <p className="mt-5 text-lg leading-relaxed text-ink-soft">
-            PeptideMaps connects verified peptide clinics with patients
-            actively searching for treatment in their area. If you run a
-            legitimate peptide practice and want a steady channel of qualified
-            patients without fighting ad platforms that won't run your
-            campaigns, this is built for you. Below, see how it works, what
-            you get, and how to list your clinic.
-          </p>
-          <a href={SCHEDULE_HREF} className="btn-primary mt-8">
-            Schedule a call with our team
-          </a>
+        <div className="mx-auto max-w-6xl px-5 pb-16 pt-14 md:pt-20">
+          <div className="grid items-center gap-12 md:grid-cols-[1.05fr_0.95fr]">
+            <div>
+              <span className="pill">For peptide clinics</span>
+              <h1 className="mt-5 font-display text-5xl leading-[1.02] tracking-tight text-ink md:text-7xl">
+                Get more{" "}
+                <span className="relative whitespace-nowrap">
+                  verified
+                  <span className="absolute inset-x-0 -bottom-1 -z-10 h-[6px] rounded bg-accent-200" />
+                </span>{" "}
+                peptide patients.
+              </h1>
+              <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-soft">
+                PeptideMaps connects verified peptide clinics with patients
+                actively searching for treatment in their area — without fighting
+                ad platforms that won't run your campaigns.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <a href={SCHEDULE_HREF} className="btn-primary">
+                  Schedule a call with our team
+                </a>
+                <a
+                  href="#how-it-works"
+                  className="text-sm font-semibold text-accent-600 hover:text-accent-700"
+                >
+                  See how it works &rarr;
+                </a>
+              </div>
+            </div>
+
+            <FoundingClinicCard />
+          </div>
         </div>
       </section>
 
-      <article className="mx-auto max-w-3xl px-5 pb-20">
+      {/* Navy stat band */}
+      <section className="bg-brand-700 text-white">
+        <div className="mx-auto max-w-6xl px-5 py-14">
+          <div className="grid gap-10 md:grid-cols-3">
+            <Stat
+              value="20+"
+              label="Years in SEO"
+              body="Two founders, two decades getting restricted verticals to rank when paid channels were off the table."
+            />
+            <Stat
+              value="25"
+              label="Founding clinic spots"
+              body="Locked-in founding-clinic rate for the first 25 clinics that join before launch."
+            />
+            <Stat
+              value="$0"
+              label="Ad spend required"
+              body="Patients come through organic search demand, not paid acquisition. The channel doesn't break when Meta bans your category."
+            />
+          </div>
+        </div>
+      </section>
+
+      <article id="how-it-works" className="mx-auto max-w-3xl px-5 pb-20 pt-20">
         <Section title="Why clinics can't rely on Google or Meta ads for peptide marketing">
           <p>
             If you've tried to run paid ads for your peptide practice, you
@@ -36,6 +75,39 @@ export default function ForClinics() {
             the compliance goalposts move constantly. Even when an ad slips
             through, it rarely lasts.
           </p>
+
+          {/* Compare cards */}
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            <div className="card p-5">
+              <div className="flex items-center gap-2 text-red-600">
+                <span aria-hidden>&times;</span>
+                <p className="text-xs font-semibold uppercase tracking-widest">
+                  Paid ads
+                </p>
+              </div>
+              <ul className="mt-3 space-y-2 text-sm text-ink-soft">
+                <li className="flex gap-2"><span className="text-red-400">&times;</span>Campaigns disapproved without warning</li>
+                <li className="flex gap-2"><span className="text-red-400">&times;</span>Accounts flagged, banned mid-quarter</li>
+                <li className="flex gap-2"><span className="text-red-400">&times;</span>Cost-per-click escalates with restrictions</li>
+                <li className="flex gap-2"><span className="text-red-400">&times;</span>Channel can vanish overnight</li>
+              </ul>
+            </div>
+            <div className="card border-accent-300/40 bg-accent-50/40 p-5">
+              <div className="flex items-center gap-2 text-accent-700">
+                <span aria-hidden>&#10003;</span>
+                <p className="text-xs font-semibold uppercase tracking-widest">
+                  PeptideMaps
+                </p>
+              </div>
+              <ul className="mt-3 space-y-2 text-sm text-ink-soft">
+                <li className="flex gap-2"><span className="text-accent-600">&#10003;</span>Organic search demand, captured city by city</li>
+                <li className="flex gap-2"><span className="text-accent-600">&#10003;</span>Verified directory inherits ranking power</li>
+                <li className="flex gap-2"><span className="text-accent-600">&#10003;</span>Flat-rate, locked-in founding pricing</li>
+                <li className="flex gap-2"><span className="text-accent-600">&#10003;</span>Stable channel — no platform-policy risk</li>
+              </ul>
+            </div>
+          </div>
+
           <p>
             This leaves most peptide clinics stuck. The demand is there,
             patients are searching every day, but the usual paid channels are
@@ -60,32 +132,61 @@ export default function ForClinics() {
             PeptideMaps is a verified directory and patient-routing platform.
             Patients searching for peptide therapy clinics in their city find
             PeptideMaps, compare verified providers, and book a consultation.
-            As a listed clinic, you appear in front of those patients at the
-            exact moment they're looking for care.
           </p>
+
+          {/* Numbered flow */}
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {[
+              ["01", "We rank", "PeptideMaps captures organic search demand in your city."],
+              ["02", "Patient compares", "They see verified providers, credentials, and reviews on your profile."],
+              ["03", "Patient books", "They book a consultation directly on your calendar."],
+            ].map(([n, t, body]) => (
+              <div key={n} className="card p-5">
+                <p className="font-display text-3xl font-semibold text-accent-500">
+                  {n}
+                </p>
+                <p className="mt-2 font-display text-lg font-semibold text-ink">
+                  {t}
+                </p>
+                <p className="mt-1 text-sm leading-relaxed text-ink-muted">
+                  {body}
+                </p>
+              </div>
+            ))}
+          </div>
+
           <p>
-            The model is simple. We handle the search visibility and the
-            patient acquisition. You handle the medicine. When a patient is
-            ready, they book directly through a calendar synced with yours,
-            so the lead lands as a scheduled consultation, not a cold name to
-            chase.
+            We handle the search visibility and the patient acquisition. You
+            handle the medicine. Leads land as scheduled consultations, not
+            cold names to chase.
           </p>
         </Section>
 
         <Section title="What you get as a PeptideMaps listed clinic">
-          <p>
-            A listed clinic gets a verified profile that builds patient trust
-            before the first call, placement in front of patients actively
-            searching for peptide therapy in your area, and qualified patient
-            leads that arrive as booked consultations rather than raw contact
-            forms. You also get a verification badge that signals to patients
-            you've met a clinical-legitimacy standard, which matters
-            enormously in a space crowded with questionable operators.
-          </p>
+          <div className="mt-2 grid gap-4 sm:grid-cols-2">
+            {[
+              ["Verified clinic profile", "Builds patient trust before the first call. Credentials, services, and reviews on one page."],
+              ["Top placement in your city", "Appear in front of patients searching for peptide therapy in your local market."],
+              ["Booked consultations", "Qualified leads arrive as scheduled appointments, not raw contact forms."],
+              ["Verification badge", "Signal you've met a clinical-legitimacy standard in a space crowded with questionable operators."],
+            ].map(([t, body]) => (
+              <div key={t} className="card p-5">
+                <div className="grid h-9 w-9 place-items-center rounded-lg bg-accent-50 text-accent-700">
+                  <span aria-hidden>&#10003;</span>
+                </div>
+                <p className="mt-3 font-display text-base font-semibold text-ink">
+                  {t}
+                </p>
+                <p className="mt-1 text-sm leading-relaxed text-ink-muted">
+                  {body}
+                </p>
+              </div>
+            ))}
+          </div>
           <p>
             Because peptide patient leads from PeptideMaps come from organic
             search intent, they tend to be higher quality than the clicks
-            you'd buy on a paid platform even if those platforms would run
+            you'd buy on a paid platform — even if those platforms would run
             your ads. These are people already looking for what you offer.
           </p>
         </Section>
@@ -111,18 +212,28 @@ export default function ForClinics() {
         <Section title="PeptideMaps verification process">
           <p>
             Every clinic on PeptideMaps is reviewed before it's listed.
-            Verification covers active medical licensing, compliant
-            prescribing and dispensing practices, and a baseline of
-            patient-safety standards including proper intake, evaluation, and
-            monitoring. We review credentials and confirm the practice
-            operates legitimately.
+            Verification covers:
           </p>
+          <ul className="mt-5 space-y-3 text-sm text-ink-soft">
+            {[
+              "Active state medical licensing",
+              "Compliant prescribing and dispensing practices",
+              "Proper patient intake and evaluation processes",
+              "Ongoing monitoring and follow-up standards",
+              "Confirmation the practice operates legitimately",
+            ].map((item) => (
+              <li key={item} className="flex items-start gap-3 rounded-xl border border-ink/10 bg-white p-4">
+                <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-accent-500 text-xs font-bold text-white">
+                  &#10003;
+                </span>
+                <span className="text-ink">{item}</span>
+              </li>
+            ))}
+          </ul>
           <p>
             This matters for you, not just for patients. A verified directory
             that turns away questionable operators is one patients can trust,
-            and that trust is what makes the leads convert. Being listed
-            alongside other vetted clinics raises your credibility rather
-            than burying you in a sea of unvetted listings.
+            and that trust is what makes the leads convert.
           </p>
         </Section>
 
@@ -197,11 +308,17 @@ export default function ForClinics() {
           </Faq>
         </Section>
 
-        <section id="schedule" className="mt-16 rounded-3xl bg-gradient-to-br from-brand-600 to-brand-800 p-10 text-white shadow-card">
-          <h2 className="font-display text-3xl tracking-tight text-white md:text-4xl">
+        <section
+          id="schedule"
+          className="mt-16 overflow-hidden rounded-3xl bg-gradient-to-br from-brand-700 via-brand-800 to-brand-900 p-10 text-white shadow-card"
+        >
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-500/15 px-3 py-1 text-xs font-medium uppercase tracking-widest text-accent-300">
+            Founding clinic spots open
+          </span>
+          <h2 className="mt-4 font-display text-3xl tracking-tight text-white md:text-4xl">
             Ready to get listed?
           </h2>
-          <p className="mt-3 max-w-2xl text-brand-50/90">
+          <p className="mt-3 max-w-2xl text-brand-100">
             If you run a legitimate peptide practice and want a stable
             channel of qualified patients in a vertical where paid ads don't
             work, PeptideMaps was built for you. Schedule a call with our
@@ -210,23 +327,112 @@ export default function ForClinics() {
           </p>
           <a
             href={SCHEDULE_HREF}
-            className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold uppercase tracking-wide text-brand-800 transition hover:bg-accent-50"
+            className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-accent-500 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-accent-400"
           >
             Schedule a call with our team
           </a>
-          <p className="mt-6 text-xs text-brand-100/70">
-            Prefer email?{" "}
-            <Link to="/privacy" className="underline">
-              See how we handle your data
-            </Link>{" "}
-            or write{" "}
+          <p className="mt-6 text-xs text-brand-200/70">
+            Prefer email? Write{" "}
             <a href="mailto:charlie@peptidemaps.ai" className="underline">
               charlie@peptidemaps.ai
             </a>
+            . See how we handle your data in our{" "}
+            <Link to="/privacy" className="underline">
+              privacy policy
+            </Link>
             .
           </p>
         </section>
       </article>
+    </div>
+  );
+}
+
+function FoundingClinicCard() {
+  return (
+    <div className="card overflow-hidden p-0">
+      <div className="bg-brand-700 px-6 py-3 text-[11px] font-semibold uppercase tracking-widest text-accent-300">
+        Founding clinic spot
+      </div>
+      <div className="p-6">
+        <div className="flex items-baseline justify-between">
+          <p className="font-display text-5xl font-semibold tracking-tight text-ink">
+            4
+            <span className="text-2xl text-ink-muted">/25</span>
+          </p>
+          <span className="pill bg-accent-50 text-accent-700">21 spots left</span>
+        </div>
+        <p className="mt-2 text-sm text-ink-muted">
+          Founding clinics claimed across launch markets.
+        </p>
+
+        <div className="mt-5 space-y-2.5">
+          {[
+            ["Top listing in your area through 2026", true],
+            ["Founding rate locked forever after launch", true],
+            ["Verification badge on your profile", true],
+            ["Standard rate at launch: $2,500/mo", false],
+          ].map(([label, active]) => (
+            <div
+              key={label as string}
+              className="flex items-start gap-2 text-sm"
+            >
+              <span
+                className={`mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full text-[10px] font-bold ${
+                  active
+                    ? "bg-accent-500 text-white"
+                    : "bg-ink/10 text-ink-muted"
+                }`}
+              >
+                {active ? "✓" : "—"}
+              </span>
+              <span className={active ? "text-ink" : "text-ink-muted line-through"}>
+                {label}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-6 border-t border-ink/10 pt-4">
+          <p className="text-xs uppercase tracking-widest text-ink-muted">
+            Recently claimed
+          </p>
+          <ul className="mt-3 space-y-2 text-sm">
+            {[
+              ["Front Range Peptide Co.", "Denver, CO"],
+              ["Austin Peptide Therapy", "Austin, TX"],
+              ["Lakeshore Men's Wellness", "Chicago, IL"],
+            ].map(([name, loc]) => (
+              <li key={name} className="flex items-center justify-between">
+                <span className="font-medium text-ink">{name}</span>
+                <span className="text-xs text-ink-muted">{loc}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Stat({
+  value,
+  label,
+  body,
+}: {
+  value: string;
+  label: string;
+  body: string;
+}) {
+  return (
+    <div>
+      <p className="font-display text-5xl font-semibold tracking-tight text-white md:text-6xl">
+        {value}
+      </p>
+      <p className="mt-2 text-xs font-semibold uppercase tracking-widest text-accent-300">
+        {label}
+      </p>
+      <p className="mt-3 text-sm leading-relaxed text-brand-100">{body}</p>
     </div>
   );
 }

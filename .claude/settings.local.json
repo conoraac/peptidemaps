@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Test-Path \"C:\\\\Users\\\\conor\\\\OneDrive\\\\Desktop\\\\peptidemaps\"; \\(Get-ChildItem \"C:\\\\Users\\\\conor\\\\OneDrive\\\\Desktop\\\\peptidemaps\" -Force -ErrorAction SilentlyContinue | Measure-Object\\).Count)",
+      "PowerShell($items = Get-ChildItem \"C:\\\\Users\\\\conor\\\\OneDrive\\\\Desktop\\\\peptidemaps\" -Force; $items | ForEach-Object { Write-Output $_.FullName })",
+      "PowerShell(node --version)",
+      "PowerShell(npm --version)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(git --version)",
+      "Bash(git init *)",
+      "Bash(git -C \"C:/Users/conor/OneDrive/Desktop/peptidemaps\" branch -M main)",
+      "Bash(git -C \"C:/Users/conor/OneDrive/Desktop/peptidemaps\" add -A)",
+      "Bash(git -C \"C:/Users/conor/OneDrive/Desktop/peptidemaps\" status --short)",
+      "Bash(git -C \"C:/Users/conor/OneDrive/Desktop/peptidemaps\" rm --cached .claude/settings.local.json)",
+      "Bash(git -C C:/Users/conor/OneDrive/Desktop/peptidemaps commit -m ' *)"
+    ]
+  }
+}

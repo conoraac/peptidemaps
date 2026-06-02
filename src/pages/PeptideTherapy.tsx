@@ -66,7 +66,7 @@ export default function PeptideTherapy() {
                 <li key={city}>
                   <Link
                     to={`/peptide-therapy/${makeCitySlug(city, parsed.state.slug)}`}
-                    className="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-brand-700 hover:bg-brand-50"
+                    className="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-accent-600 hover:bg-accent-50"
                   >
                     {city}
                     <span className="text-ink-muted">
@@ -189,14 +189,14 @@ export default function PeptideTherapy() {
             Cherry Creek Men's TRT & Hormone Clinic
           </p>
           <p className="mt-1 text-sm">
-            <span className="text-brand-700">★ 4.9</span>{" "}
+            <span className="text-accent-500">★ 4.9</span>{" "}
             <span className="text-ink-muted">· 38 reviews</span>
           </p>
           <p className="mt-1 text-sm text-ink-muted">Englewood, CO</p>
           <p className="mt-2 text-xs text-ink-soft">
             TRT · Hormone Optimization · Telehealth
           </p>
-          <p className="mt-3 text-xs font-medium text-brand-700">Learn more →</p>
+          <p className="mt-3 text-xs font-medium text-accent-600">Learn more →</p>
         </aside>
       )}
     </div>

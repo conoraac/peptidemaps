@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+﻿import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { STATES } from "../data/states";
 
@@ -60,7 +60,7 @@ export default function FindClinicsWidget({
           Location
         </label>
         {lockedLocationLabel ? (
-          <div className="field mt-1 bg-cream/70">{lockedLocationLabel}</div>
+          <div className="field mt-1 bg-slate-50">{lockedLocationLabel}</div>
         ) : (
           <select
             value={stateName}

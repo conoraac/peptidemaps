@@ -1,6 +1,5 @@
 import { useParams, Link } from "react-router-dom";
 import { clinicBySlug } from "../data/clinics";
-import BookingWidget from "../components/BookingWidget";
 import NotFound from "./NotFound";
 
 export default function ClinicProfile() {
@@ -37,7 +36,7 @@ export default function ClinicProfile() {
           {clinic.name}
         </h1>
         {clinic.verified && (
-          <span className="pill bg-brand-600 text-white">Verified</span>
+          <span className="pill bg-accent-500 text-white">Verified</span>
         )}
       </div>
       <p className="mt-2 text-ink-soft">
@@ -58,21 +57,16 @@ export default function ClinicProfile() {
         <div>
           {isGameday && <GamedayRatingCallout />}
 
-          {isGameday && (
-            <section className="mt-10 grid gap-3 sm:grid-cols-2">
-              {[
-                ["Verified provider", "License and credentials confirmed by PeptideMaps"],
-                ["Accepting new patients", "Currently booking new patient consultations"],
-                ["In-person & telehealth", "Visit the Englewood clinic or consult remotely"],
-                ["Physician-supervised", "Protocols overseen by licensed medical staff"],
-              ].map(([title, body]) => (
-                <div key={title} className="card p-5">
-                  <p className="font-display text-base font-semibold text-ink">
-                    {title}
-                  </p>
-                  <p className="mt-1 text-sm text-ink-muted">{body}</p>
-                </div>
-              ))}
+          {clinic.highlights && clinic.highlights.length > 0 && (
+            <section className="mt-8">
+              <ul className="space-y-2 text-sm text-ink-soft">
+                {clinic.highlights.map((h) => (
+                  <li key={h} className="flex items-start gap-2">
+                    <span className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-brand-600" />
+                    <span>{h}</span>
+                  </li>
+                ))}
+              </ul>
             </section>
           )}
 
@@ -117,9 +111,9 @@ export default function ClinicProfile() {
             <h2 className="font-display text-2xl text-ink">What to expect</h2>
             <ol className="mt-4 space-y-3 text-ink-soft">
               {[
-                ["Request a time.", "Pick a date and slot that works for you."],
-                ["Clinic confirms.", `The ${clinic.name} team reaches out to verify your appointment.`],
-                ["Consultation.", "Review your goals, history, and a personalized peptide plan."],
+                ["Visit the clinic.", `Head to ${clinic.name}'s site and pick a time that works for you.`],
+                ["Initial intake.", "The clinic collects your goals, medical history, and any prior bloodwork."],
+                ["Consultation.", "Review a personalized peptide plan with their medical team."],
               ].map(([t, body], i) => (
                 <li key={i} className="flex gap-3">
                   <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-brand-100 text-sm font-semibold text-brand-800">
@@ -172,7 +166,7 @@ export default function ClinicProfile() {
                     "Sleep & stress",
                     "Injury recovery",
                   ].map((p) => (
-                    <div key={p} className="rounded-xl bg-cream/70 px-3 py-2 ring-1 ring-ink/5">
+                    <div key={p} className="rounded-xl bg-slate-50 px-3 py-2 ring-1 ring-ink/5">
                       {p}
                     </div>
                   ))}
@@ -184,7 +178,7 @@ export default function ClinicProfile() {
                 <p className="mt-2 text-sm text-ink-muted">
                   Reviews are collected from verified patients after their visit.
                 </p>
-                <blockquote className="mt-4 border-l-4 border-brand-300 bg-cream/60 p-4 text-sm italic text-ink-soft">
+                <blockquote className="mt-4 rounded-xl border border-ink/5 bg-white p-4 text-sm italic text-ink-soft shadow-card">
                   Clinics cannot pay to alter or remove reviews. PeptideMaps does
                   not publish reviews containing private health information.
                 </blockquote>
@@ -215,7 +209,7 @@ export default function ClinicProfile() {
                         {q}
                         <span className="text-ink-muted group-open:rotate-45 transition">+</span>
                       </summary>
-                      <p className="border-t border-ink/5 bg-cream/40 px-5 py-4 text-sm text-ink-soft">
+                      <p className="border-t border-ink/5 bg-slate-50 px-5 py-4 text-sm text-ink-soft">
                         {a}
                       </p>
                     </details>
@@ -243,11 +237,63 @@ export default function ClinicProfile() {
         </div>
 
         <aside className="md:sticky md:top-6 md:self-start">
-          <BookingWidget
-            clinicName={clinic.name}
-            peptidesOffered={clinic.peptidesOffered}
-            gameday={isGameday}
-          />
+          <div className="card p-6">
+            <p className="text-xs font-semibold uppercase tracking-widest text-accent-600">
+              Book directly with the clinic
+            </p>
+            <h3 className="mt-3 font-display text-xl text-ink">
+              {clinic.name}
+            </h3>
+            {clinic.address && (
+              <p className="mt-1 text-sm text-ink-muted">{clinic.address}</p>
+            )}
+
+            {clinic.website ? (
+              <a
+                href={clinic.website}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="btn-primary mt-5 w-full"
+              >
+                Visit clinic website →
+              </a>
+            ) : (
+              <button disabled className="btn-primary mt-5 w-full opacity-60">
+                Website coming soon
+              </button>
+            )}
+
+            <p className="mt-3 text-center text-xs text-ink-muted">
+              You'll be taken to {clinic.name}'s booking page on their own site.
+            </p>
+
+            <div className="my-6 border-t border-ink/5" />
+
+            <p className="text-xs font-semibold uppercase tracking-wide text-ink-muted">
+              At a glance
+            </p>
+            <ul className="mt-3 space-y-2 text-sm text-ink-soft">
+              <li className="flex items-start gap-2">
+                <span className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-brand-600" />
+                <span>
+                  {clinic.peptidesOffered.length} peptide
+                  {clinic.peptidesOffered.length === 1 ? "" : "s"} offered
+                </span>
+              </li>
+              {clinic.medicalDirector && (
+                <li className="flex items-start gap-2">
+                  <span className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-brand-600" />
+                  <span>Medical director: {clinic.medicalDirector}</span>
+                </li>
+              )}
+              {clinic.pharmacyPartner && (
+                <li className="flex items-start gap-2">
+                  <span className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-brand-600" />
+                  <span>Pharmacy: {clinic.pharmacyPartner}</span>
+                </li>
+              )}
+            </ul>
+          </div>
         </aside>
       </div>
     </div>
@@ -262,7 +308,7 @@ function GamedayRatingCallout() {
           5.0
         </div>
         <div>
-          <p className="text-lg text-brand-700">★★★★★</p>
+          <p className="text-lg text-accent-500">★★★★★</p>
           <p className="text-sm text-ink-soft">70 Google reviews</p>
           <p className="mt-2 max-w-md text-sm text-ink-soft">
             Patients consistently rate Gameday Men's Health Englewood 5 stars

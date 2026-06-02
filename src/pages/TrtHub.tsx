@@ -10,7 +10,6 @@ export default function TrtHub() {
   return (
     <div>
       <section className="relative">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-brand-50/70 via-cream to-cream" />
         <div className="mx-auto max-w-6xl px-5 pb-12 pt-14 md:pt-20">
           <span className="pill">Men's health · TRT</span>
           <h1 className="mt-5 font-display text-4xl tracking-tight text-ink md:text-5xl">
@@ -48,13 +47,13 @@ export default function TrtHub() {
               <div key={s.slug}>
                 <button
                   onClick={() => setOpenState(isOpen ? null : s.slug)}
-                  className="flex w-full items-center justify-between px-5 py-4 text-left transition hover:bg-cream/70"
+                  className="flex w-full items-center justify-between px-5 py-4 text-left transition hover:bg-slate-50"
                 >
                   <span className="font-display text-lg text-ink">{s.name}</span>
                   <span className="text-ink-muted">{isOpen ? "−" : "+"}</span>
                 </button>
                 {isOpen && (
-                  <div className="bg-cream/40 px-5 pb-6 pt-2">
+                  <div className="bg-slate-50 px-5 pb-6 pt-2">
                     {cities.length === 0 ? (
                       <p className="text-sm text-ink-muted">No clinics listed yet</p>
                     ) : (
@@ -66,7 +65,7 @@ export default function TrtHub() {
                               {hasLink ? (
                                 <Link
                                   to={`/peptide-therapy/${citySlug(city, s.slug)}`}
-                                  className="text-brand-700 underline-offset-4 hover:underline"
+                                  className="text-accent-600 underline-offset-4 hover:underline"
                                 >
                                   {city}
                                 </Link>

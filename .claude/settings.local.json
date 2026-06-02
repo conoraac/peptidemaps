@@ -12,7 +12,11 @@
       "Bash(git -C \"C:/Users/conor/OneDrive/Desktop/peptidemaps\" add -A)",
       "Bash(git -C \"C:/Users/conor/OneDrive/Desktop/peptidemaps\" status --short)",
       "Bash(git -C \"C:/Users/conor/OneDrive/Desktop/peptidemaps\" rm --cached .claude/settings.local.json)",
-      "Bash(git -C C:/Users/conor/OneDrive/Desktop/peptidemaps commit -m ' *)"
+      "Bash(git -C C:/Users/conor/OneDrive/Desktop/peptidemaps commit -m ' *)",
+      "Bash(git -C \"C:/Users/conor/OneDrive/Desktop/peptidemaps\" log --oneline)",
+      "Bash(git -C \"C:/Users/conor/OneDrive/Desktop/peptidemaps\" status)",
+      "Bash(gh --version)",
+      "Bash(git -C \"C:/Users/conor/OneDrive/Desktop/peptidemaps\" push -u origin main)"
     ]
   }
 }

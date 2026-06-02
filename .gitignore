@@ -32,6 +32,9 @@ Thumbs.db
 # Vite cache
 .vite/
 
+# Loose logo at repo root — canonical copy lives in public/
+/logo.png
+
 # Claude harness (keep launch.json for shared dev preview; ignore local-only)
 .claude/sessions/
 .claude/cache/

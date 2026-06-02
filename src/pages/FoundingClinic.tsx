@@ -24,7 +24,6 @@ export default function FoundingClinic() {
   return (
     <div>
       <section id="waitlist" className="relative">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-brand-50/70 via-cream to-cream" />
         <div className="mx-auto max-w-6xl px-5 pb-16 pt-14 md:pt-20">
           <div className="grid items-start gap-12 md:grid-cols-[1.05fr_0.95fr]">
             <div>
@@ -116,7 +115,7 @@ export default function FoundingClinic() {
       </section>
 
       <section className="mx-auto max-w-6xl px-5 py-20">
-        <p className="text-xs font-semibold uppercase tracking-widest text-brand-700">
+        <p className="text-xs font-semibold uppercase tracking-widest text-accent-600">
           Why PeptideMaps
         </p>
         <h2 className="mt-3 max-w-2xl font-display text-3xl tracking-tight text-ink md:text-4xl">

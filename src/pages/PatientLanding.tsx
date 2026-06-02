@@ -24,13 +24,17 @@ export default function PatientLanding() {
   return (
     <div>
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-brand-50/60 via-cream to-cream" />
         <div className="mx-auto max-w-6xl px-5 pb-16 pt-14 md:pt-20">
           <div className="grid items-center gap-12 md:grid-cols-[1.05fr_0.95fr]">
             <div>
               <span className="pill">Launching soon</span>
-              <h1 className="mt-5 font-display text-4xl leading-[1.05] tracking-tight text-ink md:text-6xl">
-                Find the best peptide therapy clinics near you.
+              <h1 className="mt-5 font-display text-5xl leading-[1.02] tracking-tight text-ink md:text-7xl">
+                Find the best{" "}
+                <span className="relative whitespace-nowrap">
+                  peptide therapy
+                  <span className="absolute inset-x-0 -bottom-1 h-[6px] -z-10 rounded bg-accent-200" />
+                </span>{" "}
+                clinics near you.
               </h1>
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-soft">
                 PeptideMaps connects patients with verified peptide clinics
@@ -76,7 +80,7 @@ export default function PatientLanding() {
                   Are you a clinic?{" "}
                   <Link
                     to="/founding-clinic"
-                    className="font-medium text-brand-700 underline-offset-4 hover:underline"
+                    className="font-medium text-accent-600 underline-offset-4 hover:underline"
                   >
                     See clinic plans →
                   </Link>
@@ -86,7 +90,7 @@ export default function PatientLanding() {
 
             <div className="relative">
               <div className="card p-6 md:p-7">
-                <p className="text-xs font-semibold uppercase tracking-widest text-brand-700">
+                <p className="text-xs font-semibold uppercase tracking-widest text-accent-600">
                   Featured clinic
                 </p>
                 <div className="mt-4 flex items-start gap-4">
@@ -99,7 +103,7 @@ export default function PatientLanding() {
                     </p>
                     <p className="text-sm text-ink-muted">Englewood, CO</p>
                     <p className="mt-1 text-sm">
-                      <span className="text-brand-700">★★★★★</span>{" "}
+                      <span className="text-accent-500">★★★★★</span>{" "}
                       <span className="text-ink-muted">5.0 · 70 reviews</span>
                     </p>
                   </div>
@@ -111,24 +115,19 @@ export default function PatientLanding() {
                     </span>
                   ))}
                 </div>
-                <div className="mt-6 rounded-xl border border-ink/5 bg-cream/60 p-4">
-                  <p className="text-xs font-semibold text-ink-soft">
-                    Sample availability
+                <div className="mt-6 rounded-xl border border-ink/5 bg-slate-50 p-4 text-sm text-ink-soft">
+                  <p className="font-medium text-ink">
+                    Verified · accepting new patients · telehealth available
                   </p>
-                  <div className="mt-3 grid grid-cols-4 gap-2 text-xs">
-                    {["Mon", "Tue", "Wed", "Thu"].map((d) => (
-                      <div key={d} className="rounded-lg bg-white p-2 text-center shadow-sm ring-1 ring-ink/5">
-                        <p className="font-semibold text-ink">{d}</p>
-                        <p className="mt-1 text-[11px] text-ink-muted">9:00 · 1:00</p>
-                      </div>
-                    ))}
-                  </div>
+                  <p className="mt-1 text-xs text-ink-muted">
+                    750 W Hampden Ave, Suite 501, Englewood, CO
+                  </p>
                 </div>
                 <Link
                   to="/clinic/gameday-mens-health-englewood"
                   className="btn-secondary mt-5 w-full"
                 >
-                  View clinic & book →
+                  View clinic →
                 </Link>
               </div>
             </div>
@@ -136,8 +135,31 @@ export default function PatientLanding() {
         </div>
       </section>
 
+      {/* Navy stat band */}
+      <section className="bg-brand-700 text-white">
+        <div className="mx-auto max-w-6xl px-5 py-14">
+          <div className="grid gap-10 md:grid-cols-3">
+            <Stat
+              value="100%"
+              label="Verified clinics"
+              body="Every clinic is reviewed for licensing, prescribing practices, and patient-safety standards before it's listed."
+            />
+            <Stat
+              value="50"
+              label="States covered"
+              body="A national directory built city by city, so you can find a peptide therapy provider wherever you live."
+            />
+            <Stat
+              value="$0"
+              label="Cost to patients"
+              body="PeptideMaps is free for patients. Search, compare, and book directly — no fees, no middlemen."
+            />
+          </div>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-6xl px-5 py-20">
-        <p className="text-xs font-semibold uppercase tracking-widest text-brand-700">
+        <p className="text-xs font-semibold uppercase tracking-widest text-accent-600">
           How it works
         </p>
         <h2 className="mt-3 max-w-2xl font-display text-3xl tracking-tight text-ink md:text-4xl">
@@ -163,7 +185,7 @@ export default function PatientLanding() {
             },
           ].map((s) => (
             <div key={s.n} className="card p-6">
-              <p className="font-display text-sm font-semibold text-brand-700">
+              <p className="font-display text-sm font-semibold text-accent-600">
                 Step {s.n}
               </p>
               <p className="mt-2 font-display text-xl font-semibold text-ink">
@@ -174,6 +196,28 @@ export default function PatientLanding() {
           ))}
         </div>
       </section>
+    </div>
+  );
+}
+
+function Stat({
+  value,
+  label,
+  body,
+}: {
+  value: string;
+  label: string;
+  body: string;
+}) {
+  return (
+    <div>
+      <p className="font-display text-5xl font-semibold tracking-tight text-white md:text-6xl">
+        {value}
+      </p>
+      <p className="mt-2 text-xs font-semibold uppercase tracking-widest text-accent-300">
+        {label}
+      </p>
+      <p className="mt-3 text-sm leading-relaxed text-brand-100">{body}</p>
     </div>
   );
 }

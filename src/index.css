@@ -7,28 +7,34 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-cream text-ink antialiased font-sans;
+    @apply bg-white text-ink antialiased font-sans;
     font-feature-settings: "ss01", "cv11";
   }
   h1, h2, h3, h4 {
     @apply font-display tracking-tight text-ink;
   }
+  a {
+    @apply transition-colors;
+  }
 }
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white shadow-sm transition hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 disabled:opacity-60;
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-accent-600 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-accent-700 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 disabled:opacity-60;
   }
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-brand-700/20 bg-white px-6 py-3 text-sm font-semibold text-brand-800 transition hover:border-brand-700/40 hover:bg-brand-50;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink/15 bg-white px-6 py-3 text-sm font-semibold text-ink transition hover:border-ink/30;
   }
   .field {
-    @apply w-full rounded-xl border border-ink/10 bg-white px-4 py-3 text-base text-ink placeholder:text-ink-muted/70 shadow-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200;
+    @apply w-full rounded-xl border border-ink/10 bg-white px-4 py-3 text-base text-ink placeholder:text-ink-muted/70 focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-200;
   }
   .pill {
-    @apply inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1 text-xs font-medium text-brand-800;
+    @apply inline-flex items-center gap-1.5 rounded-full bg-accent-50 px-3 py-1 text-xs font-medium text-accent-700;
   }
   .card {
-    @apply rounded-2xl bg-white shadow-card ring-1 ring-ink/5;
+    @apply rounded-2xl border border-ink/10 bg-white;
+  }
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-widest text-accent-600;
   }
 }

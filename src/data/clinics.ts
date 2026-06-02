@@ -13,6 +13,8 @@ export type Clinic = {
   reviewCount?: number;
   address?: string;
   verified?: boolean;
+  website?: string;
+  highlights?: string[];
 };
 
 export const CLINICS: Clinic[] = [
@@ -37,6 +39,13 @@ export const CLINICS: Clinic[] = [
     reviewCount: 70,
     address: "750 W Hampden Ave, Suite 501, Englewood, CO 80110",
     verified: true,
+    website: "https://gamedaymenshealth.com/englewood",
+    highlights: [
+      "Verified provider",
+      "Accepting new patients",
+      "In-person & telehealth",
+      "Physician-supervised",
+    ],
   },
   {
     id: "2",

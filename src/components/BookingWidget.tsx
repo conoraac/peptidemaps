@@ -98,7 +98,7 @@ export default function BookingWidget({
                 className={`rounded-lg px-2 py-2 text-center text-xs transition ${
                   isActive
                     ? "bg-brand-600 text-white"
-                    : "bg-cream/70 text-ink hover:bg-brand-50"
+                    : "bg-slate-50 text-ink hover:bg-accent-50"
                 }`}
               >
                 <div className="text-[10px] uppercase tracking-wide opacity-80">
